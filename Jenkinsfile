@@ -1,17 +1,7 @@
 pipeline {
-    agent any
+    agent build_server
      
-    stages {
-      stage('checkout') {
-           steps {
-             
-                git branch: 'master', url: 'https://github.com/devops4solutions/Ansible-Sample-Application-Deployment.git'
-             
-          }
-        }
-        
-        
-        
+    stages {       
           stage('Ansible Init') {
             steps {
                 script {
@@ -32,7 +22,7 @@ pipeline {
                  
              
                
-               sh "ansible-playbook main.yml -i inventories/dev/hosts --user jenkins --key-file ~/.ssh/id_rsa -e '@configs/dev.yml'"
+               sh "ansible-playbook main.yml -i inventories/dev/hosts --user Muralidhar -e '@configs/dev.yml'"
 
                
             
